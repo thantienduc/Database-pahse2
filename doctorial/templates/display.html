@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="">
+            {% if result %}
+                <head><meta charset="UTF-8">
+                <title>Display</title>
+                </head>
+                <body>
+                    {{ result }}
+                </body>
+            {% else %}
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Display</legend>
+                    <div class="form-group">
+                        {{ form.StudentId.label(class="form-control-label") }}
+                        {% if form.StudentId.errors %}
+                            {{ form.StudentId(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.StudentId.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.StudentId(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-outline-info") }}
+                </div>
+            {% endif %}
+        </form>
+    </div>
+{% endblock content %}
